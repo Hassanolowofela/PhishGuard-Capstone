@@ -1,4 +1,4 @@
-# PhishGuard Capstone — Phase 2 Report: Data Acquisition & Preparation
+# PhishGuard Capstone
 
 **Project:** PhishGuard — A Web-Based Machine-Learning Tool for Phishing Email Detection
 **Phase:** 2 of 6 (Weeks 1–3 on the project Gantt chart)
