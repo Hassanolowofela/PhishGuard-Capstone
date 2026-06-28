@@ -1,0 +1,19 @@
+feature,description
+body_char_len,Length of the email body in characters
+body_word_count,Number of words in the body
+subject_char_len,Length of the subject line in characters
+subject_word_count,Number of words in the subject
+num_urls,Count of URLs in subject+body
+has_url,1 if at least one URL is present
+num_html_tags,Count of HTML tags in the raw body
+has_html,1 if the body contains HTML markup
+num_exclaim,Count of '!' characters (urgency/excitement signal)
+num_question,Count of '?' characters
+num_digits,Count of digit characters
+digit_ratio,Digits as a fraction of all characters
+uppercase_ratio,Uppercase letters as a fraction of all letters (shouting)
+num_money_symbols,"Count of $, GBP, EUR symbols (financial lure)"
+has_money_symbol,1 if any currency symbol is present
+avg_word_len,Average word length
+urgent_word_count,Count of known urgency/lure keywords
+subject_is_reply,1 if subject starts with Re:/Fw:/Fwd: (spoofed thread)

@@ -1,0 +1,40 @@
+{
+  "n_rows": 39154,
+  "n_cols": 7,
+  "columns": [
+    "sender",
+    "receiver",
+    "date",
+    "subject",
+    "body",
+    "label",
+    "urls"
+  ],
+  "label_counts": {
+    "1": 21842,
+    "0": 17312
+  },
+  "phishing_pct": 55.78,
+  "missing_per_column": {
+    "sender": 0,
+    "receiver": 462,
+    "date": 0,
+    "subject": 28,
+    "body": 0,
+    "label": 0,
+    "urls": 0
+  },
+  "duplicate_rows": 0,
+  "duplicate_bodies": 0,
+  "empty_body_rows": 0,
+  "body_char_len": {
+    "min": 11,
+    "median": 562,
+    "mean": 1567.3,
+    "max": 143996
+  },
+  "label_rate_by_url_flag": {
+    "0": 0.538,
+    "1": 0.568
+  }
+}
