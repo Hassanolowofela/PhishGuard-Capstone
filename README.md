@@ -7,7 +7,9 @@ dataset, validating it, cleaning and preprocessing the text, and engineering the
 features used for model training in Phase 3.
 
 > A full screenshot-by-screenshot account of running this pipeline is in
-> **[docs/WALKTHROUGH.md](docs/WALKTHROUGH.md)**.
+> **[docs/WALKTHROUGH.md](docs/WALKTHROUGH.md)**. The Phase 1 project proposal —
+> problem statement, scope, SMART goals, ethics & security review, and project plan —
+> is in **[docs/PROPOSAL.md](docs/PROPOSAL.md)**.
 
 ---
 
@@ -33,6 +35,7 @@ features used for model training in Phase 3.
 ├── README.md                      # this file
 ├── Phase2_Report.md               # written report of methods and findings
 ├── docs/
+│   ├── PROPOSAL.md                # Phase 1 capstone proposal
 │   └── WALKTHROUGH.md             # step-by-step run log with screenshots
 ├── screenshots/                   # images used in the walkthrough
 ├── data/                          # small reviewable artifacts (see .gitignore)
@@ -75,7 +78,7 @@ GitHub. Please cite:
 
 ## Project phases
 
-- [x] Phase 1 — Initiation & planning (proposal, repo)
+- [x] Phase 1 — Initiation & planning ([proposal](docs/PROPOSAL.md), repo)
 - [x] **Phase 2 — Data acquisition & preparation** (this repository)
 - [ ] Phase 3 — Model development
 - [ ] Phase 4 — Web application
