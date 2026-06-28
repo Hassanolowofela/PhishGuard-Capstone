@@ -1,0 +1,19 @@
+# ---- Large / regenerable data (do NOT commit) ----
+data/CEAS_08.csv
+data/01_validated.csv
+data/02_clean.csv
+data/03_combined.npz
+data/03_tfidf.npz
+data/03_labels.npy
+
+# ---- Python noise ----
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# ---- OS / editor noise ----
+.DS_Store
+desktop.ini
+.vscode/
