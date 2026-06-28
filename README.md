@@ -1,5 +1,6 @@
-# PhishGuard — Phase 2: Data Acquisition & Preparation
+# Data Acquisition & Preparation
 
+## What this Project is About
 A reproducible data pipeline for **PhishGuard**, a web-based machine-learning tool
 for phishing email detection, built as part of an MSIT capstone project. This
 repository covers **Phase 2** of the project: acquiring a public labeled email
