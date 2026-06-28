@@ -1,6 +1,5 @@
-# Data Acquisition & Preparation
+# PhishGuard — Phase 2: Data Acquisition & Preparation
 
-## What this Project is About
 A reproducible data pipeline for **PhishGuard**, a web-based machine-learning tool
 for phishing email detection, built as part of an MSIT capstone project. This
 repository covers **Phase 2** of the project: acquiring a public labeled email
@@ -11,6 +10,34 @@ features used for model training in Phase 3.
 > **[docs/WALKTHROUGH.md](docs/WALKTHROUGH.md)**. The Phase 1 project proposal —
 > problem statement, scope, SMART goals, ethics & security review, and project plan —
 > is in **[docs/PROPOSAL.md](docs/PROPOSAL.md)**.
+
+---
+
+## Overview
+
+PhishGuard is an MSIT capstone building a web-based, machine-learning tool that lets
+non-technical users check whether an email is phishing. This repository is **Phase 2**:
+the data pipeline that turns a raw public email corpus into model-ready features. It
+runs as three sequential stages, each reading the previous stage's output:
+
+1. **Acquire & validate** (`01_acquire_and_validate.py`) — downloads and caches the
+   CEAS_08 dataset (39,154 labeled emails), then profiles it for schema correctness,
+   class balance, duplicates, missing values, and label leakage, writing a
+   data-quality report before anything downstream runs.
+2. **Clean & preprocess** (`02_clean_and_preprocess.py`) — strips HTML to visible text,
+   replaces URLs and email addresses with placeholder tokens, lowercases and normalizes
+   the text, collapses whitespace, and drops duplicate messages — leaving ~34,123
+   deduplicated emails (~49.5% phishing).
+3. **Feature engineering** (`03_feature_engineering.py`) — derives 18 interpretable
+   structural features from the original text (body/subject length, URL and HTML
+   counts, punctuation, digit/uppercase ratios, currency-symbol and urgency-keyword
+   signals, reply-prefix spoofing) plus a 5,000-term TF-IDF representation — 5,018
+   features in total — and saves the fitted vectorizer for reuse in Phase 3.
+
+Together these stages produce the labeled feature matrix and supporting artifacts
+consumed in Phase 3. As a sanity check, a 3-fold logistic-regression baseline on the
+combined features reaches roughly 0.97 accuracy, 0.97 F1, and 0.99 ROC-AUC, confirming
+the features are strongly predictive ahead of dedicated model development.
 
 ---
 
