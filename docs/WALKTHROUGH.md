@@ -1,4 +1,4 @@
-# Phase 2 Walkthrough — Running the Pipeline (with screenshots)
+# Running the Pipeline
 
 This document records the exact steps used to run the Phase 2 data pipeline on a
 Windows machine using VS Code, including the console output produced at each stage.
