@@ -1,4 +1,4 @@
-# Data Acquisition & Preparation
+# PhishGuard — Phase 2: Data Acquisition & Preparation
 
 A reproducible data pipeline for **PhishGuard**, a web-based machine-learning tool
 for phishing email detection, built as part of an MSIT capstone project. This
@@ -9,7 +9,8 @@ features used for model training in Phase 3.
 > A full screenshot-by-screenshot account of running this pipeline is in
 > **[docs/WALKTHROUGH.md](docs/WALKTHROUGH.md)**. The Phase 1 project proposal —
 > problem statement, scope, SMART goals, ethics & security review, and project plan —
-> is in **[docs/PROPOSAL.md](docs/PROPOSAL.md)**.
+> is in **[docs/PROPOSAL.md](docs/PROPOSAL.md)**. The system design, architecture, and
+> ethics/security-by-design specification are in **[docs/SDD.md](docs/SDD.md)**.
 
 ---
 
@@ -64,6 +65,7 @@ the features are strongly predictive ahead of dedicated model development.
 ├── Phase2_Report.md               # written report of methods and findings
 ├── docs/
 │   ├── PROPOSAL.md                # Phase 1 capstone proposal
+│   ├── SDD.md                     # software design doc (architecture + ethics/security)
 │   └── WALKTHROUGH.md             # step-by-step run log with screenshots
 ├── screenshots/                   # images used in the walkthrough
 ├── data/                          # small reviewable artifacts (see .gitignore)
