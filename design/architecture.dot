@@ -1,0 +1,42 @@
+digraph PhishGuard {
+  rankdir=TB; fontname="Helvetica"; labelloc="t"; fontsize=22;
+  label="PhishGuard System Architecture and Data Flow";
+  nodesep=0.35; ranksep=0.55;
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=11, color="#2E5090", fillcolor="#EAF0FA", margin="0.12,0.07"];
+  edge [fontname="Helvetica", fontsize=9, color="#555555"];
+
+  User [shape=oval, fillcolor="#FFF3D6", color="#C08A00", label="User\n(non-technical)"];
+
+  subgraph cluster_pres {
+    label="Presentation Layer (Browser)"; style="rounded,dashed"; color="#8FA8D0"; fontsize=12; fontcolor="#2E5090";
+    WebUI [label="Web UI\nform + consent + result view"];
+  }
+  subgraph cluster_app {
+    label="Application Layer (Flask)   |   server-side trust boundary"; style="rounded,dashed"; color="#8FA8D0"; fontsize=12; fontcolor="#2E5090";
+    Controller [label="API Controller\nvalidate, sanitize, rate limit, TLS"];
+    Preproc [label="Preprocessing &\nFeature Extraction"];
+    Inference [label="Model Inference\nclassifier + TF-IDF"];
+    Explain [label="Explainability\nSHAP / LIME (top 5)"];
+    Result [label="Result Assembly\n+ advisory disclaimer"];
+    Logging [label="Logging & Monitoring\nde-identified metadata"];
+    Admin [label="Administration & Config\nauthenticated, least privilege"];
+  }
+  subgraph cluster_pers {
+    label="Persistence (minimal, no email content)"; style="rounded,dashed"; color="#8FA8D0"; fontsize=12; fontcolor="#2E5090";
+    Artifacts [shape=cylinder, fillcolor="#E7F5E7", color="#3C8C3C", label="Model artifacts\n+ config"];
+    Audit [shape=cylinder, fillcolor="#E7F5E7", color="#3C8C3C", label="Audit log & metrics\n(no PII)"];
+  }
+
+  User -> WebUI [label="paste email + consent"];
+  WebUI -> Controller [label="HTTPS / TLS 1.2+"];
+  Controller -> Preproc [label="in-memory text"];
+  Preproc -> Inference [label="feature vector"];
+  Inference -> Explain [label="label + probability"];
+  Explain -> Result [label="top-5 features"];
+  Result -> WebUI [label="label + confidence + explanation", style=dashed, constraint=false];
+  Artifacts -> Inference [label="loads", style=dotted];
+  Controller -> Logging [label="metadata only"];
+  Logging -> Audit;
+  Admin -> Artifacts;
+  Admin -> Audit;
+}
