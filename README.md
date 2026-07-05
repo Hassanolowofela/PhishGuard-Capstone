@@ -12,7 +12,8 @@ features used for model training in Phase 3.
 > is in **[docs/PROPOSAL.md](docs/PROPOSAL.md)**. The system design, architecture, and
 > ethics/security-by-design specification are in **[docs/SDD.md](docs/SDD.md)**. The
 > Phase 3 model development and honest evaluation writeup is in
-> **[docs/PHASE3_REPORT.md](docs/PHASE3_REPORT.md)**.
+> **[docs/PHASE3_REPORT.md](docs/PHASE3_REPORT.md)**, with a hands-on run-it-yourself
+> guide in **[docs/PHASE3_WALKTHROUGH.md](docs/PHASE3_WALKTHROUGH.md)**.
 
 ---
 
@@ -94,6 +95,7 @@ the model does not depend on. Full details, tables, and per-step scripts are in
 │   ├── PROPOSAL.md                # Phase 1 capstone proposal
 │   ├── SDD.md                     # software design doc (architecture + ethics/security)
 │   ├── PHASE3_REPORT.md           # Phase 3 model development + honest evaluation
+│   ├── PHASE3_WALKTHROUGH.md      # Phase 3 step-by-step run guide
 │   └── WALKTHROUGH.md             # step-by-step run log with screenshots
 ├── screenshots/                   # images used in the walkthrough
 ├── data/                          # small reviewable artifacts (see .gitignore)
