@@ -1,0 +1,427 @@
+{
+  "model": "step09 scaled MaxAbsScaler + LogisticRegression",
+  "explainer": "shap.LinearExplainer (interventional, exact for linear model)",
+  "space": "log-odds (decision_function); positive => phishing",
+  "test_n": 4875,
+  "n_features": 5018,
+  "n_structural": 18,
+  "n_tfidf": 5000,
+  "base_value_logodds": -1.0268,
+  "top20_overall": [
+    {
+      "feature": "subject_is_reply",
+      "kind": "structural",
+      "mean_abs_shap": 1.09897,
+      "mean_signed_shap": 0.0225
+    },
+    {
+      "feature": "alert cnn",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.41863,
+      "mean_signed_shap": 0.41863
+    },
+    {
+      "feature": "alert custom",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.41863,
+      "mean_signed_shap": 0.41863
+    },
+    {
+      "feature": "alert alert",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.41863,
+      "mean_signed_shap": 0.41863
+    },
+    {
+      "feature": "alerts custom",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.41863,
+      "mean_signed_shap": 0.41863
+    },
+    {
+      "feature": "custom alert",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.41863,
+      "mean_signed_shap": 0.41863
+    },
+    {
+      "feature": "alerts",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.33367,
+      "mean_signed_shap": -0.33367
+    },
+    {
+      "feature": "email",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.21562,
+      "mean_signed_shap": -0.15274
+    },
+    {
+      "feature": "settings",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.2071,
+      "mean_signed_shap": -0.19937
+    },
+    {
+      "feature": "emailtoken",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.20541,
+      "mean_signed_shap": -0.03703
+    },
+    {
+      "feature": "python",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.20528,
+      "mean_signed_shap": -0.03572
+    },
+    {
+      "feature": "network cnn",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.20275,
+      "mean_signed_shap": -0.20275
+    },
+    {
+      "feature": "list emailtoken",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.18203,
+      "mean_signed_shap": -0.03127
+    },
+    {
+      "feature": "code",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.17551,
+      "mean_signed_shap": 0.02436
+    },
+    {
+      "feature": "emailtoken urltoken",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.16639,
+      "mean_signed_shap": -0.0281
+    },
+    {
+      "feature": "policy terms",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.15233,
+      "mean_signed_shap": -0.15233
+    },
+    {
+      "feature": "com result",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.14713,
+      "mean_signed_shap": 0.14713
+    },
+    {
+      "feature": "agreed receive",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.14708,
+      "mean_signed_shap": 0.14708
+    },
+    {
+      "feature": "preference settings",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.14708,
+      "mean_signed_shap": 0.14708
+    },
+    {
+      "feature": "settings manage",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.14708,
+      "mean_signed_shap": 0.14708
+    }
+  ],
+  "top10_structural": [
+    {
+      "feature": "subject_is_reply",
+      "kind": "structural",
+      "mean_abs_shap": 1.09897,
+      "mean_signed_shap": 0.0225
+    },
+    {
+      "feature": "has_url",
+      "kind": "structural",
+      "mean_abs_shap": 0.13509,
+      "mean_signed_shap": -0.06467
+    },
+    {
+      "feature": "has_money_symbol",
+      "kind": "structural",
+      "mean_abs_shap": 0.08917,
+      "mean_signed_shap": 0.01477
+    },
+    {
+      "feature": "uppercase_ratio",
+      "kind": "structural",
+      "mean_abs_shap": 0.06053,
+      "mean_signed_shap": -0.02438
+    },
+    {
+      "feature": "subject_char_len",
+      "kind": "structural",
+      "mean_abs_shap": 0.02945,
+      "mean_signed_shap": 0.00891
+    },
+    {
+      "feature": "digit_ratio",
+      "kind": "structural",
+      "mean_abs_shap": 0.02046,
+      "mean_signed_shap": -0.00985
+    },
+    {
+      "feature": "avg_word_len",
+      "kind": "structural",
+      "mean_abs_shap": 0.01927,
+      "mean_signed_shap": -0.0038
+    },
+    {
+      "feature": "num_urls",
+      "kind": "structural",
+      "mean_abs_shap": 0.01303,
+      "mean_signed_shap": -0.00046
+    },
+    {
+      "feature": "subject_word_count",
+      "kind": "structural",
+      "mean_abs_shap": 0.00885,
+      "mean_signed_shap": -0.00216
+    },
+    {
+      "feature": "num_question",
+      "kind": "structural",
+      "mean_abs_shap": 0.00864,
+      "mean_signed_shap": -0.00186
+    }
+  ],
+  "top10_tfidf": [
+    {
+      "feature": "alert cnn",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.41863,
+      "mean_signed_shap": 0.41863
+    },
+    {
+      "feature": "alert custom",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.41863,
+      "mean_signed_shap": 0.41863
+    },
+    {
+      "feature": "alert alert",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.41863,
+      "mean_signed_shap": 0.41863
+    },
+    {
+      "feature": "alerts custom",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.41863,
+      "mean_signed_shap": 0.41863
+    },
+    {
+      "feature": "custom alert",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.41863,
+      "mean_signed_shap": 0.41863
+    },
+    {
+      "feature": "alerts",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.33367,
+      "mean_signed_shap": -0.33367
+    },
+    {
+      "feature": "email",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.21562,
+      "mean_signed_shap": -0.15274
+    },
+    {
+      "feature": "settings",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.2071,
+      "mean_signed_shap": -0.19937
+    },
+    {
+      "feature": "emailtoken",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.20541,
+      "mean_signed_shap": -0.03703
+    },
+    {
+      "feature": "python",
+      "kind": "tfidf",
+      "mean_abs_shap": 0.20528,
+      "mean_signed_shap": -0.03572
+    }
+  ],
+  "structural_share_of_total_importance": 0.0474,
+  "worked_examples": [
+    {
+      "test_row": 3006,
+      "true_label": 1,
+      "phishing_probability": 1.0,
+      "base_value_logodds": -1.0268,
+      "top_contributions": [
+        {
+          "feature": "german",
+          "kind": "tfidf",
+          "shap_logodds": 2.0571,
+          "pushes": "phishing"
+        },
+        {
+          "feature": "dimension",
+          "kind": "tfidf",
+          "shap_logodds": 1.2684,
+          "pushes": "phishing"
+        },
+        {
+          "feature": "subject_is_reply",
+          "kind": "structural",
+          "shap_logodds": 0.7806,
+          "pushes": "phishing"
+        },
+        {
+          "feature": "male",
+          "kind": "tfidf",
+          "shap_logodds": 0.7272,
+          "pushes": "phishing"
+        },
+        {
+          "feature": "length",
+          "kind": "tfidf",
+          "shap_logodds": 0.7148,
+          "pushes": "phishing"
+        },
+        {
+          "feature": "financial",
+          "kind": "tfidf",
+          "shap_logodds": 0.7014,
+          "pushes": "phishing"
+        },
+        {
+          "feature": "soros",
+          "kind": "tfidf",
+          "shap_logodds": 0.6965,
+          "pushes": "phishing"
+        },
+        {
+          "feature": "gone",
+          "kind": "tfidf",
+          "shap_logodds": -0.4819,
+          "pushes": "legitimate"
+        }
+      ]
+    },
+    {
+      "test_row": 102,
+      "true_label": 0,
+      "phishing_probability": 0.0,
+      "base_value_logodds": -1.0268,
+      "top_contributions": [
+        {
+          "feature": "subject_is_reply",
+          "kind": "structural",
+          "shap_logodds": -1.9111,
+          "pushes": "legitimate"
+        },
+        {
+          "feature": "num_urls",
+          "kind": "structural",
+          "shap_logodds": -1.0816,
+          "pushes": "legitimate"
+        },
+        {
+          "feature": "february",
+          "kind": "tfidf",
+          "shap_logodds": -0.483,
+          "pushes": "legitimate"
+        },
+        {
+          "feature": "fork",
+          "kind": "tfidf",
+          "shap_logodds": -0.4706,
+          "pushes": "legitimate"
+        },
+        {
+          "feature": "code",
+          "kind": "tfidf",
+          "shap_logodds": -0.3894,
+          "pushes": "legitimate"
+        },
+        {
+          "feature": "13",
+          "kind": "tfidf",
+          "shap_logodds": -0.3565,
+          "pushes": "legitimate"
+        },
+        {
+          "feature": "security",
+          "kind": "tfidf",
+          "shap_logodds": -0.3154,
+          "pushes": "legitimate"
+        },
+        {
+          "feature": "14",
+          "kind": "tfidf",
+          "shap_logodds": -0.3061,
+          "pushes": "legitimate"
+        }
+      ]
+    },
+    {
+      "test_row": 191,
+      "true_label": 0,
+      "phishing_probability": 0.5041,
+      "base_value_logodds": -1.0268,
+      "top_contributions": [
+        {
+          "feature": "subject_is_reply",
+          "kind": "structural",
+          "shap_logodds": -1.9111,
+          "pushes": "legitimate"
+        },
+        {
+          "feature": "msn",
+          "kind": "tfidf",
+          "shap_logodds": -0.5222,
+          "pushes": "legitimate"
+        },
+        {
+          "feature": "bed",
+          "kind": "tfidf",
+          "shap_logodds": 0.5162,
+          "pushes": "phishing"
+        },
+        {
+          "feature": "offers",
+          "kind": "tfidf",
+          "shap_logodds": 0.4853,
+          "pushes": "phishing"
+        },
+        {
+          "feature": "reason",
+          "kind": "tfidf",
+          "shap_logodds": -0.4716,
+          "pushes": "legitimate"
+        },
+        {
+          "feature": "problem",
+          "kind": "tfidf",
+          "shap_logodds": -0.445,
+          "pushes": "legitimate"
+        },
+        {
+          "feature": "quality",
+          "kind": "tfidf",
+          "shap_logodds": 0.4169,
+          "pushes": "phishing"
+        },
+        {
+          "feature": "interested",
+          "kind": "tfidf",
+          "shap_logodds": -0.4139,
+          "pushes": "legitimate"
+        }
+      ]
+    }
+  ]
+}
