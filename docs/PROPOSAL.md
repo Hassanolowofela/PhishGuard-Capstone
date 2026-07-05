@@ -1,8 +1,8 @@
-# Capstone Proposal — A Web-Based Machine-Learning Tool for Phishing Email Detection
+# Capstone Proposal - A Web-Based Machine-Learning Tool for Phishing Email Detection
 
-**Course:** MSIT 5910-01 — Capstone Project
+**Course:** MSIT 5910-01 - Capstone Project
 **Instructor:** Prof. Adebayo Abayomi-Alli
-**Assignment:** Activity Unit 2 — Capstone Proposal
+**Assignment:** Activity Unit 2 - Capstone Proposal
 **Author:** Hassan Olowofela
 **Date:** June 25, 2026
 
@@ -35,7 +35,7 @@ senders, and craft zero-day campaigns that no signature recognizes. A 2024 syste
 review concludes that the most pressing weakness in current defenses is the limited
 adaptability of models to new phishing behavior (Kyaw et al., 2024), while
 Hosseinzadeh et al. (2025) show that a modern hybrid deep-learning architecture can
-reach roughly 96–97% accuracy on a public dataset, confirming that learning-based
+reach roughly 96 to 97% accuracy on a public dataset, confirming that learning-based
 detection is both feasible and effective.
 
 The motivation is practical. Working in technical support at an HR/EOR technology
