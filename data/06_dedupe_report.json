@@ -1,0 +1,44 @@
+{
+  "threshold": 0.95,
+  "top_k": 25,
+  "seed": 42,
+  "n_total": 34123,
+  "near_duplicate_clusters_total": 28500,
+  "multi_member_clusters": 1578,
+  "emails_in_multi_member_clusters": 7201,
+  "largest_cluster_size": 1376,
+  "clean_split": {
+    "train": {
+      "n": 24374,
+      "legit": 12307,
+      "phish": 12067,
+      "phish_pct": 49.51
+    },
+    "val": {
+      "n": 4874,
+      "legit": 2461,
+      "phish": 2413,
+      "phish_pct": 49.51
+    },
+    "test": {
+      "n": 4875,
+      "legit": 2462,
+      "phish": 2413,
+      "phish_pct": 49.5
+    }
+  },
+  "group_leakage_after_split": {
+    "train_test_shared_groups": 0,
+    "train_val_shared_groups": 0
+  },
+  "verify_test_vs_train": {
+    "count_ge_0.95": 0,
+    "count_ge_0.90": 1684,
+    "max_similarity": 0.95
+  },
+  "verify_val_vs_train": {
+    "count_ge_0.95": 0,
+    "count_ge_0.90": 458,
+    "max_similarity": 0.9498
+  }
+}

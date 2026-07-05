@@ -1,0 +1,61 @@
+{
+  "split_sizes": {
+    "train": 23885,
+    "val": 5119,
+    "test": 5119
+  },
+  "exact_duplicate_clean_text": 0,
+  "near_duplicate_test_vs_train": {
+    "n": 5119,
+    "count_ge_0.99": 297,
+    "count_ge_0.95": 958,
+    "count_ge_0.90": 1406,
+    "pct_ge_0.95": 18.71,
+    "median_similarity": 0.7848,
+    "max_similarity": 1.0
+  },
+  "near_duplicate_val_vs_train": {
+    "n": 5119,
+    "count_ge_0.99": 309,
+    "count_ge_0.95": 977,
+    "count_ge_0.90": 1423,
+    "pct_ge_0.95": 19.09,
+    "median_similarity": 0.7859,
+    "max_similarity": 1.0
+  },
+  "top_structural_features_by_univariate_auc": [
+    [
+      "body_char_len",
+      0.9276
+    ],
+    [
+      "body_word_count",
+      0.9194
+    ],
+    [
+      "num_digits",
+      0.8481
+    ],
+    [
+      "subject_is_reply",
+      0.7721
+    ],
+    [
+      "num_question",
+      0.7596
+    ],
+    [
+      "subject_char_len",
+      0.7019
+    ],
+    [
+      "subject_word_count",
+      0.6934
+    ],
+    [
+      "digit_ratio",
+      0.6839
+    ]
+  ],
+  "shortcut_flag": false
+}
