@@ -10,7 +10,10 @@ features used for model training in Phase 3.
 > **[docs/WALKTHROUGH.md](docs/WALKTHROUGH.md)**. The Phase 1 project proposal -
 > problem statement, scope, SMART goals, ethics & security review, and project plan -
 > is in **[docs/PROPOSAL.md](docs/PROPOSAL.md)**. The system design, architecture, and
-> ethics/security-by-design specification are in **[docs/SDD.md](docs/SDD.md)**.
+> ethics/security-by-design specification are in **[docs/SDD.md](docs/SDD.md)**. The
+> Phase 3 model development and honest evaluation writeup is in
+> **[docs/PHASE3_REPORT.md](docs/PHASE3_REPORT.md)**, with a hands-on run-it-yourself
+> guide in **[docs/PHASE3_WALKTHROUGH.md](docs/PHASE3_WALKTHROUGH.md)**.
 
 ---
 
@@ -36,9 +39,13 @@ runs as three sequential stages, each reading the previous stage's output:
    features in total - and saves the fitted vectorizer for reuse in Phase 3.
 
 Together these stages produce the labeled feature matrix and supporting artifacts
-consumed in Phase 3. As a sanity check, a 3-fold logistic-regression baseline on the
-combined features reaches roughly 0.97 accuracy, 0.97 F1, and 0.99 ROC-AUC, confirming
-the features are strongly predictive ahead of dedicated model development.
+consumed in Phase 3. An early in-pipeline baseline on the combined features reached
+roughly 0.97, but that number was optimistic: it predated leakage control and a
+feature-scaling fix. Phase 3 rebuilds the evaluation rigorously (near-duplicate
+leakage audit, group-aware re-split, and a truly held-out test set) and, after
+correcting a feature-scaling flaw the early baseline had hidden, the final model
+reaches **0.996 F1** on the clean held-out test set. The full story is in
+**[docs/PHASE3_REPORT.md](docs/PHASE3_REPORT.md)**.
 
 ---
 
@@ -49,7 +56,28 @@ the features are strongly predictive ahead of dedicated model development.
 | Source dataset | CEAS_08, 39,154 labeled emails (Al-Subaiey et al., 2024) |
 | After cleaning & de-duplication | 34,123 emails, ~49.5% phishing |
 | Features engineered | 18 interpretable + 5,000 TF-IDF = 5,018 total |
-| Baseline sanity check | ~0.97 accuracy / ~0.97 F1 (clears the 95% target) |
+| Phase 3 final model (held-out test) | 0.9957 accuracy / 0.9957 F1 / 0.9997 ROC-AUC |
+
+---
+
+## Phase 3: model development (honest evaluation)
+
+Phase 3 trains and evaluates the classifier with an emphasis on results that hold up
+on unseen data. The short version of the arc:
+
+| Stage | Test F1 | What it represents |
+|-------|--------:|--------------------|
+| Early in-pipeline baseline | ~0.97 | Optimistic: no leakage control, unscaled features |
+| Leakage-controlled combined | 0.9484 | Honest, but exposed a feature-scaling flaw |
+| Scaled combined (final) | **0.9957** | Honest and correct, exceeds the original number |
+
+Highlights: a near-duplicate leakage audit found 18.7% of test emails had a training
+near-twin, so the data was de-duplicated and re-split by group; a feature-scaling flaw
+that made the combined model underperform TF-IDF alone was found and fixed with a
+`MaxAbsScaler`; SHAP explanations show the model reasons mainly from email content;
+and a dominant structural cue (`subject_is_reply`) was verified to be a corpus artifact
+the model does not depend on. Full details, tables, and per-step scripts are in
+**[docs/PHASE3_REPORT.md](docs/PHASE3_REPORT.md)**.
 
 ---
 
@@ -66,6 +94,8 @@ the features are strongly predictive ahead of dedicated model development.
 ├── docs/
 │   ├── PROPOSAL.md                # Phase 1 capstone proposal
 │   ├── SDD.md                     # software design doc (architecture + ethics/security)
+│   ├── PHASE3_REPORT.md           # Phase 3 model development + honest evaluation
+│   ├── PHASE3_WALKTHROUGH.md      # Phase 3 step-by-step run guide
 │   └── WALKTHROUGH.md             # step-by-step run log with screenshots
 ├── screenshots/                   # images used in the walkthrough
 ├── data/                          # small reviewable artifacts (see .gitignore)
@@ -110,7 +140,7 @@ GitHub. Please cite:
 
 - [x] Phase 1 - Initiation & planning ([proposal](docs/PROPOSAL.md), repo)
 - [x] **Phase 2 - Data acquisition & preparation** (this repository)
-- [ ] Phase 3 - Model development
+- [x] Phase 3 - Model development ([report](docs/PHASE3_REPORT.md))
 - [ ] Phase 4 - Web application
 - [ ] Phase 5 - Testing & evaluation
 - [ ] Phase 6 - Documentation & delivery

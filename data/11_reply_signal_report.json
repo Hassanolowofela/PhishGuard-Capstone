@@ -1,0 +1,39 @@
+{
+  "question": "Is subject_is_reply a robust phishing cue or a corpus artifact?",
+  "association": {
+    "overall_phishing_rate": 0.4951,
+    "reply_subjects": {
+      "n": 9727,
+      "share": 0.2851,
+      "phishing_rate": 0.0179,
+      "phish": 174,
+      "legit": 9553
+    },
+    "non_reply_subjects": {
+      "n": 24396,
+      "share": 0.7149,
+      "phishing_rate": 0.6853,
+      "phish": 16719,
+      "legit": 7677
+    },
+    "phi_correlation_with_phishing": -0.6026,
+    "phishing_rate_ratio_reply_over_nonreply": 0.0261
+  },
+  "robustness": {
+    "full_model": {
+      "best_C": 10,
+      "accuracy": 0.9957,
+      "f1": 0.9957,
+      "roc_auc": 0.9997
+    },
+    "without_subject_is_reply": {
+      "best_C": 10,
+      "accuracy": 0.9965,
+      "f1": 0.9965,
+      "roc_auc": 0.9998
+    },
+    "f1_drop": -0.0008,
+    "accuracy_drop": -0.0008
+  },
+  "interpretation": "Reply-style subjects are strongly associated with legitimate mail in CEAS_08 (phi about -0.6), so the feature is a real but dataset-specific signal. Removing it barely changes test performance, so the model does not depend on the shortcut; the shortcut is available but redundant given the TF-IDF content features. Real phishing can spoof 'Re:', so this cue should not be trusted on out-of-distribution mail."
+}
