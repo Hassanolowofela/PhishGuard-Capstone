@@ -1,0 +1,85 @@
+{
+  "split": "06 clean",
+  "test_n": 4875,
+  "selected_model": "logistic regression (calibrated)",
+  "threshold_independent": {
+    "roc_auc": 0.9864,
+    "pr_auc": 0.9748
+  },
+  "test_default_0.5": {
+    "threshold": 0.5,
+    "accuracy": 0.9555,
+    "precision": 0.9256,
+    "recall": 0.9896,
+    "f1": 0.9565,
+    "false_positive_rate": 0.078,
+    "false_negative_rate": 0.0104,
+    "confusion": {
+      "tn": 2270,
+      "fp": 192,
+      "fn": 25,
+      "tp": 2388
+    }
+  },
+  "test_tuned_best_f1": {
+    "threshold": 0.775,
+    "accuracy": 0.9807,
+    "precision": 0.9778,
+    "recall": 0.9834,
+    "f1": 0.9806,
+    "false_positive_rate": 0.0219,
+    "false_negative_rate": 0.0166,
+    "confusion": {
+      "tn": 2408,
+      "fp": 54,
+      "fn": 40,
+      "tp": 2373
+    }
+  },
+  "test_tuned_precision_0.97": {
+    "threshold": 0.71,
+    "accuracy": 0.9744,
+    "precision": 0.9632,
+    "recall": 0.9859,
+    "f1": 0.9744,
+    "false_positive_rate": 0.037,
+    "false_negative_rate": 0.0141,
+    "confusion": {
+      "tn": 2371,
+      "fp": 91,
+      "fn": 34,
+      "tp": 2379
+    }
+  },
+  "leakage_comparison": {
+    "clean_06_test": {
+      "accuracy": 0.9467,
+      "f1": 0.9484,
+      "roc_auc": 0.9749
+    },
+    "leaky_04_test": {
+      "accuracy": 0.9416,
+      "f1": 0.9429,
+      "roc_auc": 0.9847
+    },
+    "f1_inflation": -0.0055,
+    "accuracy_inflation": -0.0051
+  },
+  "ablation_clean_test": {
+    "structural_only_18": {
+      "accuracy": 0.9264,
+      "f1": 0.93,
+      "roc_auc": 0.9515
+    },
+    "tfidf_only_5000": {
+      "accuracy": 0.9949,
+      "f1": 0.9948,
+      "roc_auc": 0.9991
+    },
+    "combined_5018": {
+      "accuracy": 0.9467,
+      "f1": 0.9484,
+      "roc_auc": 0.9749
+    }
+  }
+}

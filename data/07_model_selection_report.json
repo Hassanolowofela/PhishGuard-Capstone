@@ -1,0 +1,48 @@
+{
+  "seed": 42,
+  "split": "06 (clean, leakage-controlled)",
+  "train_n": 24374,
+  "val_n": 4874,
+  "candidates": {
+    "logreg": {
+      "best_params": {
+        "C": 1
+      },
+      "cv_f1": 0.9557,
+      "val_accuracy": 0.9469,
+      "val_precision": 0.9123,
+      "val_recall": 0.9876,
+      "val_f1": 0.9485,
+      "val_roc_auc": 0.9954,
+      "fit_seconds": 26.5
+    },
+    "linear_svm": {
+      "best_params": {
+        "C": 1
+      },
+      "cv_f1": 0.9462,
+      "val_accuracy": 0.9282,
+      "val_precision": 0.8813,
+      "val_recall": 0.988,
+      "val_f1": 0.9316,
+      "val_roc_auc": 0.9923,
+      "fit_seconds": 11.6
+    },
+    "complement_nb": {
+      "best_params": {
+        "alpha": 0.1
+      },
+      "cv_f1": 0.8536,
+      "val_accuracy": 0.8541,
+      "val_precision": 0.7869,
+      "val_recall": 0.9673,
+      "val_f1": 0.8678,
+      "val_roc_auc": 0.9092,
+      "fit_seconds": 0.5
+    }
+  },
+  "selected_model": "logreg",
+  "selected_val_f1": 0.9485,
+  "calibration": "sigmoid, cv=5",
+  "note": "Test set is untouched; final evaluation happens in the next step."
+}
