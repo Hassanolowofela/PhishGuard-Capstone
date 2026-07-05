@@ -1,10 +1,10 @@
-# Software Design Document (SDD) — PhishGuard
+# Software Design Document (SDD) - PhishGuard
 
 **Project:** A Web-Based Machine-Learning Tool for Phishing Email Detection
-**Course:** MSIT 5910 — Capstone Project
+**Course:** MSIT 5910 - Capstone Project
 **Author:** Hassan Olowofela
 **Version:** 1.0
-**Status:** Design (Phase 2 data pipeline implemented; web application designed for Phases 3–4)
+**Status:** Design (Phase 2 data pipeline implemented; web application designed for Phases 3 to 4)
 
 > Companion documents: the [Phase 1 proposal](PROPOSAL.md) sets out the problem,
 > scope, and goals; the [Phase 2 walkthrough](WALKTHROUGH.md) records the implemented
@@ -53,7 +53,7 @@ hardening, and multi-language detection.
 
 | Term | Meaning |
 |------|---------|
-| TF-IDF | Term Frequency–Inverse Document Frequency text representation |
+| TF-IDF | Term Frequency-Inverse Document Frequency text representation |
 | SHAP / LIME | Model-agnostic explainability methods for per-prediction feature attribution |
 | PII | Personally Identifiable Information |
 | FPR / FNR | False-Positive Rate / False-Negative Rate |
@@ -88,7 +88,7 @@ result is explicitly advisory: the tool is a decision aid that keeps a human in 
 not an automated gatekeeper.
 
 The system reuses the Phase 2 pipeline at runtime. An incoming email passes through the
-same cleaning and feature-extraction logic used in training — HTML is stripped, URLs and
+same cleaning and feature-extraction logic used in training - HTML is stripped, URLs and
 email addresses are replaced with placeholder tokens, and the text is turned into 18
 interpretable structural features plus a 5,000-term TF-IDF vector using the serialized
 `models/tfidf_vectorizer.joblib`. The trained classifier then produces a probability, and
@@ -131,7 +131,7 @@ from the ML core and pushes sensitive data handling to a single, controllable bo
 
 ### 4.1 Architectural Style
 
-PhishGuard uses a **layered client–server architecture** with a clear server-side
+PhishGuard uses a **layered client-server architecture** with a clear server-side
 **trust boundary**. The browser holds no secrets and performs no classification; all
 processing occurs server-side within one application boundary, which keeps the attack
 surface small and the data-flow easy to reason about. Within the server, responsibilities
@@ -143,11 +143,11 @@ point where each risk arises.
 
 ```mermaid
 flowchart TB
-    subgraph Client["Presentation Layer — Browser"]
+    subgraph Client["Presentation Layer - Browser"]
         UI["Web UI (Bootstrap)<br/>submission form + privacy notice + consent"]
     end
 
-    subgraph Server["Application Layer (Flask) — Server-side Trust Boundary"]
+    subgraph Server["Application Layer (Flask) - Server-side Trust Boundary"]
         CTRL["API Controller<br/>input validation · sanitization · rate limit · CSRF"]
         PRE["Preprocessing &amp; Feature Extraction<br/>(reuses Phase 2 pipeline)"]
         INF["Model Inference<br/>classifier + TF-IDF vectorizer"]
@@ -157,7 +157,7 @@ flowchart TB
         ADM["Administration &amp; Config<br/>authenticated, least privilege"]
     end
 
-    subgraph Store["Persistence — minimal, no email content"]
+    subgraph Store["Persistence - minimal, no email content"]
         ART[("Model artifacts + config")]
         AUD[("Audit log &amp; metrics<br/>no PII / no email bodies")]
     end
@@ -192,7 +192,7 @@ flowchart TB
 
 | Entity | Description | Sensitivity | Retention |
 |--------|-------------|-------------|-----------|
-| Submitted email | Raw text provided by the user | High (may contain PII/credentials) | **None** — discarded after response |
+| Submitted email | Raw text provided by the user | High (may contain PII/credentials) | **None** - discarded after response |
 | Feature vector | Structural + TF-IDF representation | Transient, in memory | None |
 | Prediction | Label + probability | Low | Not linked to email content |
 | Explanation | Top-5 feature attributions | Low | Returned, not stored |
@@ -223,11 +223,11 @@ sequenceDiagram
     M->>X: label + probability
     X-->>C: top-5 feature attributions
     C-->>B: label + confidence + explanation + advisory
-    Note over C,P: Email discarded after response<br/>(GDPR Art. 5 — minimization & storage limitation)
+    Note over C,P: Email discarded after response<br/>(GDPR Art. 5 - minimization & storage limitation)
     C->>L: de-identified metadata only<br/>(no email body, no PII)
 ```
 
-### 5.3 Data Lifecycle — Process-and-Discard
+### 5.3 Data Lifecycle - Process-and-Discard
 
 Submitted content follows a strict lifecycle: **received over TLS → validated → processed
 in memory → result returned → immediately released from memory**. No stage writes the
@@ -238,8 +238,8 @@ underpins several of the mitigations in [Section 8](#8-embedding-ethical-and-sec
 ### 5.4 Data Classification
 
 Data is classified into three tiers: **transient-sensitive** (the submitted email and its
-in-memory derivatives — never persisted, always encrypted in transit); **operational**
-(de-identified logs and aggregate metrics — retained, access-controlled); and
+in-memory derivatives - never persisted, always encrypted in transit); **operational**
+(de-identified logs and aggregate metrics - retained, access-controlled); and
 **non-sensitive** (versioned model artifacts and configuration). Access controls and
 encryption requirements are assigned per tier.
 
@@ -293,7 +293,7 @@ that build in security and ethics.
 ### 6.6 Result Assembly and Advisory
 
 - **Responsibility:** Package label, confidence, and explanation with a clear advisory
-  disclaimer ("this is guidance, not a guarantee — verify before acting").
+  disclaimer ("this is guidance, not a guarantee - verify before acting").
 - **Design decisions:** The advisory framing operationalizes human-in-the-loop
   decision-making and aligns with GDPR expectations around automated processing.
 
@@ -301,7 +301,7 @@ that build in security and ethics.
 
 - **Responsibility:** Record operational metrics and security-relevant events.
 - **Design decisions:** Logs **de-identified metadata only** (timestamp, predicted label,
-  latency, status) — never the email content; administrative and authentication events are
+  latency, status) - never the email content; administrative and authentication events are
   audit-logged to support detection and incident response.
 
 ### 6.8 Administration and Configuration
@@ -365,8 +365,8 @@ architecture or data flow. (Requirement: at least three; six are analyzed here.)
 | R1 | Exposure or over-retention of sensitive email content (submitted emails may contain PII, credentials, or confidential business data) | Ethical + Security | Data flow: input handling and any persistence | Medium | High |
 | R2 | Injection / cross-site scripting via crafted email text or rendered output | Security | Client ↔ Controller interface; result rendering | Medium | High |
 | R3 | Broken access control to the model, logs, or admin functions | Security | Application + persistence layers | Medium | High |
-| R4 | Interception of data in transit | Security | Client ↔ Server data flow | Low–Medium | High |
-| R5 | Algorithmic bias — disproportionate false positives for certain writing styles/languages | Ethical | Preprocessing + Inference | Medium | Medium–High |
+| R4 | Interception of data in transit | Security | Client ↔ Server data flow | Low-Medium | High |
+| R5 | Algorithmic bias - disproportionate false positives for certain writing styles/languages | Ethical | Preprocessing + Inference | Medium | Medium-High |
 | R6 | Adversarial / LLM-crafted evasion of the classifier | Security + Ethical | Inference | Medium | Medium |
 
 A supporting concern, **vulnerable or outdated dependencies (R7)**, spans the whole stack
@@ -383,7 +383,7 @@ Each risk is addressed by a deliberate design decision or safeguard in a specifi
 | R2 | Input validation and sanitization at the Controller; output encoding/HTML-escaping in the UI; size limits | Controller, Web UI |
 | R3 | Authentication on administrative endpoints; least-privilege separation; read-only model artifacts; audit logging | Administration, Logging |
 | R4 | Mandatory TLS 1.2+ for all traffic; no sensitive data in URLs; secure cookies | Controller, Web UI |
-| R5 | Fairness monitoring — per-segment FPR/FNR reported; de-identified/representative training data; interpretable features expose biased signals; advisory framing keeps a human in the loop | Explainability, Inference, Administration |
+| R5 | Fairness monitoring - per-segment FPR/FNR reported; de-identified/representative training data; interpretable features expose biased signals; advisory framing keeps a human in the loop | Explainability, Inference, Administration |
 | R6 | Advisory (not gatekeeping) positioning; interpretable structural features that are harder to game than pure lexical cues; monitoring for drift; adversarial robustness flagged as future work | Result Assembly, Inference, Logging |
 | R7 | Pinned, regularly patched dependencies; minimal library surface | Build / deployment |
 
@@ -400,8 +400,8 @@ cryptography and privacy controls (e.g., A.8.24, A.5.34).
 
 #### 8.3.2 Authentication Mechanisms
 
-Anonymous users may submit an email for classification, but every privileged action —
-managing model versions, viewing logs and metrics — requires authentication and follows
+Anonymous users may submit an email for classification, but every privileged action -
+managing model versions, viewing logs and metrics - requires authentication and follows
 least privilege. This directly answers OWASP A01 (Broken Access Control) and A07
 (Identification and Authentication Failures) and maps to ISO/IEC 27001:2022 access-control
 and secure-authentication controls (e.g., A.5.15, A.8.5). Administrative and
@@ -422,9 +422,9 @@ performance is reported per email segment (not just as headline accuracy), false
 and false-negative rates are tracked because they carry asymmetric human cost, the
 explainability module exposes which features drive a decision (making biased signals
 visible), and the advisory, human-in-the-loop framing avoids fully automated adverse
-decisions — consistent with the spirit of GDPR Art. 22 on automated decision-making.
+decisions - consistent with the spirit of GDPR Art. 22 on automated decision-making.
 
-### 8.4 Concrete Worked Example — The Consent-Gated, Process-and-Discard Submission
+### 8.4 Concrete Worked Example - The Consent-Gated, Process-and-Discard Submission
 
 Consider the most sensitive operation in the system: a user submitting a real, possibly
 confidential email. The design handles it as a single, unified decision that is
@@ -441,7 +441,7 @@ simultaneously ethical and secure:
 4. Only **de-identified metadata** is logged (GDPR Art. 5; OWASP A09 handled without
    capturing content).
 
-This one design choice — *consent-gated, TLS-only, process-and-discard* — upholds
+This one design choice - *consent-gated, TLS-only, process-and-discard* - upholds
 **ethical integrity** (user autonomy, transparency, privacy) and **secure operation**
 (minimized attack surface, no sensitive data at rest, encrypted transport) at the same
 time. It is the clearest illustration that, in PhishGuard, the ethical and secure choice
@@ -457,8 +457,8 @@ is the same architectural choice.
 | Authentication & least privilege | A.5.15, A.8.5 | Art. 32 | A01, A07 | Protect |
 | De-identified logging & monitoring | A.8.15, A.8.16 | Art. 5 | A09 Logging & Monitoring Failures | Detect / Respond |
 | Dependency patching | A.8.8 Vulnerability mgmt | Art. 32 | A06 Vulnerable Components | Identify / Protect |
-| Consent & transparency | A.5.34 | Art. 6, 7, 13 | — | Govern |
-| Fairness monitoring & human-in-loop | — | Art. 22 | — | Govern |
+| Consent & transparency | A.5.34 | Art. 6, 7, 13 | - | Govern |
+| Fairness monitoring & human-in-loop | - | Art. 22 | - | Govern |
 
 Together these mappings show that each safeguard is anchored in at least one recognized
 standard, and that data protection, authentication, consent, and fairness are addressed
@@ -469,8 +469,8 @@ by design rather than retrofitted.
 ## 9. Deployment View
 
 The prototype deploys as a single application instance (local host or a free-tier cloud
-service) behind TLS, loading versioned model artifacts at start-up. A minimal footprint —
-one guarded entry point, no user-data store, patched dependencies — keeps the deployment
+service) behind TLS, loading versioned model artifacts at start-up. A minimal footprint -
+one guarded entry point, no user-data store, patched dependencies - keeps the deployment
 both auditable and cheap, consistent with the project's budget and security goals.
 
 ```mermaid
@@ -500,7 +500,7 @@ Association for Computing Machinery. (2018). *ACM code of ethics and professiona
 
 European Parliament & Council of the European Union. (2016). *Regulation (EU) 2016/679 (General Data Protection Regulation).* https://eur-lex.europa.eu/eli/reg/2016/679/oj
 
-International Organization for Standardization. (2022). *ISO/IEC 27001:2022 — Information security, cybersecurity and privacy protection — Information security management systems — Requirements.* https://www.iso.org/standard/27001
+International Organization for Standardization. (2022). *ISO/IEC 27001:2022 - Information security, cybersecurity and privacy protection - Information security management systems - Requirements.* https://www.iso.org/standard/27001
 
 National Institute of Standards and Technology. (2024). *The NIST cybersecurity framework (CSF) 2.0* (NIST CSWP 29). U.S. Department of Commerce. https://doi.org/10.6028/NIST.CSWP.29
 
