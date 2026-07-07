@@ -13,7 +13,9 @@ features used for model training in Phase 3.
 > ethics/security-by-design specification are in **[docs/SDD.md](docs/SDD.md)**. The
 > Phase 3 model development and honest evaluation writeup is in
 > **[docs/PHASE3_REPORT.md](docs/PHASE3_REPORT.md)**, with a hands-on run-it-yourself
-> guide in **[docs/PHASE3_WALKTHROUGH.md](docs/PHASE3_WALKTHROUGH.md)**.
+> guide in **[docs/PHASE3_WALKTHROUGH.md](docs/PHASE3_WALKTHROUGH.md)**. The Phase 4
+> web application and its Safe/Scam/Malware classifier are described in
+> **[docs/PHASE4_REPORT.md](docs/PHASE4_REPORT.md)** (the app itself is in **[webapp/](webapp/)**).
 
 ---
 
@@ -141,6 +143,6 @@ GitHub. Please cite:
 - [x] Phase 1 - Initiation & planning ([proposal](docs/PROPOSAL.md), repo)
 - [x] **Phase 2 - Data acquisition & preparation** (this repository)
 - [x] Phase 3 - Model development ([report](docs/PHASE3_REPORT.md))
-- [ ] Phase 4 - Web application
+- [x] Phase 4 - Web application ([report](docs/PHASE4_REPORT.md), [app](webapp/))
 - [ ] Phase 5 - Testing & evaluation
 - [ ] Phase 6 - Documentation & delivery
