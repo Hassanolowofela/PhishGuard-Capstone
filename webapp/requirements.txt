@@ -1,0 +1,10 @@
+# PhishGuard web application (Phase 4)
+# Pin scikit-learn to the version the Phase 3 model artifacts were saved with,
+# so the pickled model loads without version warnings.
+scikit-learn==1.9.0
+scipy>=1.11
+numpy>=1.26
+joblib>=1.3
+beautifulsoup4>=4.12
+lxml>=5.0
+Flask>=3.0
