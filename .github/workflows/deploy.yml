@@ -1,0 +1,39 @@
+name: Deploy
+
+# Continuous Delivery. On merge to main, build the container image and publish it
+# to the GitHub Container Registry, so every release is a ready-to-run artifact
+# (the image bakes in the trained model). Publishing runs in a "production"
+# environment, so a manual approval gate can be required in Settings > Environments,
+# keeping a human decision before release as argued in the CI/CD reflection.
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  publish-image:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Log in to the GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and publish the image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/hassanolowofela/phishguard-capstone:latest
+            ghcr.io/hassanolowofela/phishguard-capstone:${{ github.sha }}
