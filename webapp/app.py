@@ -47,5 +47,19 @@ def analyze():
         return jsonify({"error": str(exc)}), 500
 
 
+@app.route("/health")
+def health():
+    """Readiness check for monitoring and uptime probes.
+
+    Returns 200 when the model loads, 503 otherwise. It reports no email content
+    and no user data, so it is safe to expose to a public uptime monitor.
+    """
+    try:
+        get_multiclass_model(MODELS_DIR)
+        return jsonify({"status": "ok", "model_loaded": True})
+    except Exception:
+        return jsonify({"status": "degraded", "model_loaded": False}), 503
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
