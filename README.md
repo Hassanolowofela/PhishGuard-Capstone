@@ -8,8 +8,11 @@ with a confidence score and plain-language reasons.** It is built as an MSIT
 capstone, and it processes email in memory only, so nothing you submit is stored.
 
 <p align="center">
-  <img src="design/architecture.png" alt="PhishGuard architecture" width="640">
+  <img src="screenshots/safe.jpg" alt="Safe verdict" width="250">
+  <img src="screenshots/scam.jpg" alt="Scam verdict" width="250">
+  <img src="screenshots/Malware.jpg" alt="Malware verdict" width="250">
 </p>
+<p align="center"><i>Safe, Scam, and Malware verdicts, each with a confidence score and plain-language reasons.</i></p>
 
 ## What it does
 
@@ -46,6 +49,10 @@ PhishGuard uses a layered client and server design. The browser collects the
 email and consent, a Flask API validates the request and runs preprocessing,
 inference, and explanation, and only model artifacts are persisted. Email content
 is held in memory and discarded after the response.
+
+<p align="center">
+  <img src="design/architecture.png" alt="PhishGuard architecture and data flow" width="620">
+</p>
 
 Under the hood it combines **18 interpretable structural features** (link counts,
 urgency words, money symbols, and so on) with a **5,000 term TF-IDF**
