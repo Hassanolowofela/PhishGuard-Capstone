@@ -1,5 +1,7 @@
 # PhishGuard - Phase 2: Data Acquisition & Preparation
 
+[![CI](https://github.com/Hassanolowofela/PhishGuard-Capstone/actions/workflows/ci.yml/badge.svg?branch=development)](https://github.com/Hassanolowofela/PhishGuard-Capstone/actions/workflows/ci.yml)
+
 A reproducible data pipeline for **PhishGuard**, a web-based machine-learning tool
 for phishing email detection, built as part of an MSIT capstone project. This
 repository covers **Phase 2** of the project: acquiring a public labeled email
@@ -124,6 +126,23 @@ python 03_feature_engineering.py
 ```
 
 Stage 1 downloads the dataset (~65 MB) on first run and caches it locally.
+
+---
+
+## Continuous integration and delivery
+
+Every push and pull request runs a GitHub Actions pipeline
+(`.github/workflows/ci.yml`) that installs the dependencies, lints the code with
+ruff, byte-compiles every Python file so a syntax error cannot reach `main`, runs
+the unit tests, and checks the documentation for stray dashes. The unit tests in
+`tests/` cover the parts that do not need model artifacts: the text cleaning and
+the 18 structural features in `webapp/features.py`, the combined feature vector
+width, and the sender heuristics in `webapp/inference.py`.
+
+For delivery, a `Dockerfile` builds a consistent image and serves the app with
+gunicorn, so PhishGuard runs the same way on any machine or free tier host. This
+keeps the project releasable at all times: small, frequently merged changes are
+automatically built and tested before they reach `main`.
 
 ---
 
