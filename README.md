@@ -90,7 +90,7 @@ The Phase 4 three-class model (Safe, Scam, Malware) reaches a leakage-controlled
 |----------|----------------|
 | [Proposal](docs/PROPOSAL.md) | Problem, scope, SMART goals, and the ethics and security review |
 | [Software Design Document](docs/SDD.md) | Architecture, modules, requirements, and ethics and security by design |
-| [Phase 2 report](Phase2_Report.md), [walkthrough](docs/WALKTHROUGH.md) | Data pipeline: acquire, clean, and feature-engineer the corpus |
+| [Phase 2 report](docs/PHASE2_REPORT.md), [walkthrough](docs/PHASE2_WALKTHROUGH.md) | Data pipeline: acquire, clean, and feature-engineer the corpus |
 | [Phase 3 report](docs/PHASE3_REPORT.md), [walkthrough](docs/PHASE3_WALKTHROUGH.md) | Model development and honest, leakage-controlled evaluation |
 | [Phase 4 report](docs/PHASE4_REPORT.md) | The web application and the Safe/Scam/Malware classifier |
 | [Web app README](webapp/README.md) | How to run the app and how the inference works |
@@ -137,7 +137,7 @@ frequently merged changes are automatically built and tested before they reach
 ## Development phases
 
 - [x] Phase 1 - Initiation and planning ([proposal](docs/PROPOSAL.md))
-- [x] Phase 2 - Data acquisition and preparation ([report](Phase2_Report.md))
+- [x] Phase 2 - Data acquisition and preparation ([report](docs/PHASE2_REPORT.md))
 - [x] Phase 3 - Model development ([report](docs/PHASE3_REPORT.md))
 - [x] Phase 4 - Web application ([report](docs/PHASE4_REPORT.md), [app](webapp/))
 - [ ] Phase 5 - Testing and evaluation
