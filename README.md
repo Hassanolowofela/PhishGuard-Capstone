@@ -134,6 +134,18 @@ gunicorn, so PhishGuard runs the same way on any machine or free tier host. Smal
 frequently merged changes are automatically built and tested before they reach
 `main`.
 
+## Deployment and monitoring
+
+On merge to `main`, a deploy workflow (`.github/workflows/deploy.yml`) builds the
+container image and publishes it to the GitHub Container Registry, so every release
+produces a ready-to-run artifact. Publishing runs in a `production` environment, so
+a manual approval gate can be required before release (Settings, Environments),
+which keeps a human decision in the loop. A `render.yaml` blueprint lets the app be
+deployed to a free host with a live URL in a few clicks.
+
+For monitoring, the app exposes a `/health` endpoint that reports readiness without
+exposing any user data, suitable for a public uptime monitor such as UptimeRobot.
+
 ## Development phases
 
 - [x] Phase 1 - Initiation and planning ([proposal](docs/PROPOSAL.md))
