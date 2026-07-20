@@ -1,0 +1,63 @@
+{
+  "goal": "improve cross-corpus generalization of the binary phishing model",
+  "note": "CEAS subsampled to ~4000 (stratified) and character n-grams (3,4) capped at 6000 features for tractability. Numbers are directional; the shipped model trains on the full union.",
+  "corpora": {
+    "ceas_sample": 4000,
+    "zenodo": 606
+  },
+  "A_single_source_generalization_CEAS_to_Zenodo": {
+    "baseline_word_at_0.5": {
+      "n": 606,
+      "accuracy": 0.6997,
+      "precision": 0.7364,
+      "recall": 0.9057,
+      "f1": 0.8124,
+      "roc_auc": 0.5274,
+      "false_positive_rate": 0.8246
+    },
+    "improved_char_balanced_dropsubject_at_0.5": {
+      "n": 606,
+      "accuracy": 0.6881,
+      "precision": 0.744,
+      "recall": 0.8621,
+      "f1": 0.7987,
+      "roc_auc": 0.6666,
+      "false_positive_rate": 0.7544
+    },
+    "improved_char_at_tuned_threshold": {
+      "n": 606,
+      "accuracy": 0.6898,
+      "precision": 0.737,
+      "recall": 0.8828,
+      "f1": 0.8033,
+      "roc_auc": 0.6666,
+      "false_positive_rate": 0.8012,
+      "threshold": 0.35
+    }
+  },
+  "B_reverse_Zenodo_to_CEAS_improved_at_0.5": {
+    "n": 4000,
+    "accuracy": 0.4527,
+    "precision": 0.4453,
+    "recall": 0.4298,
+    "f1": 0.4374,
+    "roc_auc": 0.4465,
+    "false_positive_rate": 0.5248
+  },
+  "C_shipped_model_union_heldout_20pct_mixed_sources": {
+    "n": 922,
+    "accuracy": 0.987,
+    "precision": 0.9856,
+    "recall": 0.9896,
+    "f1": 0.9876,
+    "roc_auc": 0.9976,
+    "false_positive_rate": 0.0159
+  },
+  "final_model": {
+    "file": "models/33_binary_generalized.joblib",
+    "trained_on": "union of CEAS_08 subsample and Zenodo",
+    "threshold": 0.515,
+    "struct_features_used": 15
+  },
+  "runtime_seconds": 16.5
+}

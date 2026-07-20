@@ -1,0 +1,243 @@
+{
+  "test": "robustness_adversarial_probes",
+  "model": "multiclass Safe/Scam/Malware (serving model)",
+  "n_seeds": 5,
+  "n_probes": 25,
+  "evasion_rate_to_safe": 0.0,
+  "mean_confidence_drop_on_threats": 0.0411,
+  "by_perturbation": {
+    "leetspeak": {
+      "evasions": 0,
+      "of_seeds": 5
+    },
+    "space_out_triggers": {
+      "evasions": 0,
+      "of_seeds": 5
+    },
+    "obfuscate_links": {
+      "evasions": 0,
+      "of_seeds": 5
+    },
+    "benign_padding": {
+      "evasions": 0,
+      "of_seeds": 5
+    },
+    "unicode_homoglyphs": {
+      "evasions": 0,
+      "of_seeds": 5
+    }
+  },
+  "per_seed": [
+    {
+      "name": "account_suspend_scam",
+      "baseline_verdict": "scam",
+      "baseline_confidence": 0.9935,
+      "probes": {
+        "leetspeak": {
+          "verdict": "scam",
+          "confidence": 0.9742,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.0193
+        },
+        "space_out_triggers": {
+          "verdict": "scam",
+          "confidence": 0.9366,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.0569
+        },
+        "obfuscate_links": {
+          "verdict": "scam",
+          "confidence": 0.9952,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": 0.0017
+        },
+        "benign_padding": {
+          "verdict": "scam",
+          "confidence": 0.9902,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.0033
+        },
+        "unicode_homoglyphs": {
+          "verdict": "scam",
+          "confidence": 0.89,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.1035
+        }
+      }
+    },
+    {
+      "name": "prize_baiting_scam",
+      "baseline_verdict": "scam",
+      "baseline_confidence": 0.9883,
+      "probes": {
+        "leetspeak": {
+          "verdict": "scam",
+          "confidence": 0.982,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.0063
+        },
+        "space_out_triggers": {
+          "verdict": "scam",
+          "confidence": 0.9743,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.014
+        },
+        "obfuscate_links": {
+          "verdict": "scam",
+          "confidence": 0.9883,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": 0.0
+        },
+        "benign_padding": {
+          "verdict": "scam",
+          "confidence": 0.9868,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.0015
+        },
+        "unicode_homoglyphs": {
+          "verdict": "scam",
+          "confidence": 0.9045,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.0838
+        }
+      }
+    },
+    {
+      "name": "invoice_malware_lure",
+      "baseline_verdict": "malware",
+      "baseline_confidence": 0.8244,
+      "probes": {
+        "leetspeak": {
+          "verdict": "scam",
+          "confidence": 0.8243,
+          "verdict_changed": true,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.0001
+        },
+        "space_out_triggers": {
+          "verdict": "malware",
+          "confidence": 0.957,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": 0.1326
+        },
+        "obfuscate_links": {
+          "verdict": "malware",
+          "confidence": 0.8243,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.0001
+        },
+        "benign_padding": {
+          "verdict": "scam",
+          "confidence": 0.5285,
+          "verdict_changed": true,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.2959
+        },
+        "unicode_homoglyphs": {
+          "verdict": "scam",
+          "confidence": 0.4853,
+          "verdict_changed": true,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.3391
+        }
+      }
+    },
+    {
+      "name": "delivery_scam",
+      "baseline_verdict": "safe",
+      "baseline_confidence": 0.4892,
+      "probes": {
+        "leetspeak": {
+          "verdict": "scam",
+          "confidence": 0.7427,
+          "verdict_changed": true,
+          "evaded_to_safe": false,
+          "confidence_delta": 0.2535
+        },
+        "space_out_triggers": {
+          "verdict": "safe",
+          "confidence": 0.4892,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": 0.0
+        },
+        "obfuscate_links": {
+          "verdict": "scam",
+          "confidence": 0.5916,
+          "verdict_changed": true,
+          "evaded_to_safe": false,
+          "confidence_delta": 0.1024
+        },
+        "benign_padding": {
+          "verdict": "safe",
+          "confidence": 0.5211,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": 0.0319
+        },
+        "unicode_homoglyphs": {
+          "verdict": "safe",
+          "confidence": 0.7503,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": 0.2611
+        }
+      }
+    },
+    {
+      "name": "security_alert_scam",
+      "baseline_verdict": "scam",
+      "baseline_confidence": 0.9975,
+      "probes": {
+        "leetspeak": {
+          "verdict": "scam",
+          "confidence": 0.9997,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": 0.0022
+        },
+        "space_out_triggers": {
+          "verdict": "scam",
+          "confidence": 0.9746,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.0229
+        },
+        "obfuscate_links": {
+          "verdict": "scam",
+          "confidence": 0.9975,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": 0.0
+        },
+        "benign_padding": {
+          "verdict": "scam",
+          "confidence": 0.9927,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.0048
+        },
+        "unicode_homoglyphs": {
+          "verdict": "scam",
+          "confidence": 0.9913,
+          "verdict_changed": false,
+          "evaded_to_safe": false,
+          "confidence_delta": -0.0062
+        }
+      }
+    }
+  ],
+  "interpretation_hint": "A high evasion rate or large confidence drop shows the model is sensitive to surface wording tricks. Because PhishGuard reads text, not attachments, this documents a known limitation rather than a defect."
+}
