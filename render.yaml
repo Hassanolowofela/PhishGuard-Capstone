@@ -1,0 +1,13 @@
+# Render Blueprint for a free live deployment of PhishGuard.
+# Connect this repository at https://render.com (New > Blueprint). Render reads this
+# file, builds the Dockerfile, and serves the app with a public URL. The health
+# check keeps the service marked healthy only while the model loads.
+
+services:
+  - type: web
+    name: phishguard
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true

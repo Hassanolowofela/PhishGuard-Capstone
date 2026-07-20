@@ -1,0 +1,31 @@
+{
+  "test": "cross_corpus_generalization",
+  "model": "09_classifier_scaled (binary, trained on CEAS_08 only)",
+  "ood_corpus": "Zenodo multiclass NLP dataset (unseen source and format)",
+  "ood_class_balance": {
+    "legit_0": 171,
+    "phish_1": 435
+  },
+  "in_corpus_reference_test_f1": 0.9957,
+  "ood_default_threshold_0.5": {
+    "n": 606,
+    "accuracy": 0.7393,
+    "precision": 0.7523,
+    "recall": 0.9494,
+    "f1": 0.8394,
+    "roc_auc": 0.6741,
+    "false_positive_rate": 0.7953,
+    "false_negative_rate": 0.0506,
+    "confusion": {
+      "tn": 35,
+      "fp": 136,
+      "fn": 22,
+      "tp": 413
+    }
+  },
+  "tfidf_vocab_coverage": {
+    "mean_fraction_tokens_in_vocab": 0.3853,
+    "note": "Fraction of OOD tokens present in the CEAS-trained vocabulary."
+  },
+  "interpretation_hint": "Compare OOD f1 to the in-corpus 0.9957 to read the generalization gap. Subject features are zero because the OOD corpus has no separate subject line."
+}
