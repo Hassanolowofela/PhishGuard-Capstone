@@ -1,6 +1,6 @@
 # PhishGuard
 
-[![CI](https://github.com/Hassanolowofela/PhishGuard-Capstone/actions/workflows/ci.yml/badge.svg?branch=development)](https://github.com/Hassanolowofela/PhishGuard-Capstone/actions/workflows/ci.yml)
+[![CI](https://github.com/Hassanolowofela/PhishGuard-Capstone/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Hassanolowofela/PhishGuard-Capstone/actions/workflows/ci.yml)
 
 **PhishGuard is an interpretable, web based machine learning tool that checks an
 email and tells you whether it is Safe, a Scam, or a Malware-delivery attempt,
@@ -93,6 +93,7 @@ The Phase 4 three-class model (Safe, Scam, Malware) reaches a leakage-controlled
 | [Phase 2 report](docs/PHASE2_REPORT.md), [walkthrough](docs/PHASE2_WALKTHROUGH.md) | Data pipeline: acquire, clean, and feature-engineer the corpus |
 | [Phase 3 report](docs/PHASE3_REPORT.md), [walkthrough](docs/PHASE3_WALKTHROUGH.md) | Model development and honest, leakage-controlled evaluation |
 | [Phase 4 report](docs/PHASE4_REPORT.md) | The web application and the Safe/Scam/Malware classifier |
+| [Phase 5 report](docs/PHASE5_REPORT.md), [generalization](docs/PHASE5_GENERALIZATION.md), [run book](docs/PHASE5_RUNBOOK.md) | Testing, evaluation, robustness, and the cross-corpus generalization fix |
 | [Web app README](webapp/README.md) | How to run the app and how the inference works |
 
 ## Repository structure
@@ -152,7 +153,7 @@ exposing any user data, suitable for a public uptime monitor such as UptimeRobot
 - [x] Phase 2 - Data acquisition and preparation ([report](docs/PHASE2_REPORT.md))
 - [x] Phase 3 - Model development ([report](docs/PHASE3_REPORT.md))
 - [x] Phase 4 - Web application ([report](docs/PHASE4_REPORT.md), [app](webapp/))
-- [ ] Phase 5 - Testing and evaluation
+- [x] Phase 5 - Testing and evaluation ([report](docs/PHASE5_REPORT.md))
 - [ ] Phase 6 - Documentation and delivery
 
 ## Dataset and license
