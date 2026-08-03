@@ -8,20 +8,20 @@ with a confidence score and plain-language reasons.** It is built as an MSIT
 capstone, and it processes email in memory only, so nothing you submit is stored.
 
 <p align="center">
-  <img src="screenshots/safe.jpg" alt="Safe verdict" width="250">
-  <img src="screenshots/scam.jpg" alt="Scam verdict" width="250">
-  <img src="screenshots/Malware.jpg" alt="Malware verdict" width="250">
+<img src="screenshots/safe.jpg" alt="Safe verdict" width="250">
+<img src="screenshots/scam.jpg" alt="Scam verdict" width="250">
+<img src="screenshots/Malware.jpg" alt="Malware verdict" width="250">
 </p>
 <p align="center"><i>Safe, Scam, and Malware verdicts, each with a confidence score and plain-language reasons.</i></p>
 
 ## What it does
 
 - Paste an email (sender, subject, and body) and get an instant **Safe, Scam, or
-  Malware** verdict with a confidence score.
+Malware** verdict with a confidence score.
 - Read **plain-language red flags** that explain the decision (urgency language,
-  links, money requests, lookalike senders) and a recommended action.
+links, money requests, lookalike senders) and a recommended action.
 - **Transparent by design:** the model is a simple, interpretable classifier, and
-  every prediction is explained.
+every prediction is explained.
 - **Private by design:** email is processed in memory and is never stored.
 
 ## The web application
@@ -35,10 +35,10 @@ Run it locally:
 
 ```bash
 # from the project root, in your virtual environment
-python 20_train_multiclass.py          # one time: builds the model
+python 20_train_multiclass.py # one time: builds the model
 pip install -r webapp/requirements.txt
 cd webapp
-python app.py                          # then open http://127.0.0.1:5000
+python app.py # then open http://127.0.0.1:5000
 ```
 
 See **[webapp/README.md](webapp/README.md)** for full details.
@@ -51,7 +51,7 @@ inference, and explanation, and only model artifacts are persisted. Email conten
 is held in memory and discarded after the response.
 
 <p align="center">
-  <img src="design/architecture.png" alt="PhishGuard architecture and data flow" width="620">
+<img src="design/architecture.png" alt="PhishGuard architecture and data flow" width="620">
 </p>
 
 Under the hood it combines **18 interpretable structural features** (link counts,
@@ -77,12 +77,32 @@ The Phase 4 three-class model (Safe, Scam, Malware) reaches a leakage-controlled
 (a small-data proof of concept that reads malware-lure wording, not attachments).
 
 <p align="center">
-  <img src="screenshots/phase3/eval_arc.png" alt="Evaluation arc" width="420">
-  <img src="screenshots/phase3/confusion_matrix.png" alt="Confusion matrix" width="300">
+<img src="screenshots/phase3/eval_arc.png" alt="Evaluation arc" width="420">
+<img src="screenshots/phase3/confusion_matrix.png" alt="Confusion matrix" width="300">
 </p>
 <p align="center">
-  <img src="data/10_shap_top_features.png" alt="Top features by SHAP importance" width="560">
+<img src="data/10_shap_top_features.png" alt="Top features by SHAP importance" width="560">
 </p>
+
+## System testing
+
+Week 7 added a structured system test across the unit, integration, system, and
+acceptance levels, each captured as reproducible evidence:
+
+- **Unit and integration:** the `pytest` suite in `tests/` exercises the features,
+the sender heuristics, and the full request path through the Flask app; all 18
+tests pass.
+- **Performance:** `benchmark.py` times 500 predictions and reports about 1.3 ms
+mean latency and several hundred predictions per second on ordinary hardware.
+- **Robustness:** adversarial probes (leetspacing, spaced triggers, obfuscated
+links, benign padding, unicode lookalikes) produced 0 evasions to a Safe verdict.
+- **Acceptance:** a real, unsolicited scam email was classified as Scam at about
+94 percent confidence with interpretable red flags.
+- **API demo:** `webapp/api_demo.py` reproduces the health check and a live
+analysis request through the Flask test client.
+
+See **[docs/WEEK7_TESTING.md](docs/WEEK7_TESTING.md)** for full results and the
+maintenance plan.
 
 ## Documentation
 
@@ -94,25 +114,27 @@ The Phase 4 three-class model (Safe, Scam, Malware) reaches a leakage-controlled
 | [Phase 3 report](docs/PHASE3_REPORT.md), [walkthrough](docs/PHASE3_WALKTHROUGH.md) | Model development and honest, leakage-controlled evaluation |
 | [Phase 4 report](docs/PHASE4_REPORT.md) | The web application and the Safe/Scam/Malware classifier |
 | [Phase 5 report](docs/PHASE5_REPORT.md), [generalization](docs/PHASE5_GENERALIZATION.md), [run book](docs/PHASE5_RUNBOOK.md) | Testing, evaluation, robustness, and the cross-corpus generalization fix |
+| [Week 7 testing](docs/WEEK7_TESTING.md) | System testing (unit, performance, robustness, acceptance) and the maintenance plan |
 | [Web app README](webapp/README.md) | How to run the app and how the inference works |
 
 ## Repository structure
 
 ```
 .
-├── 01_acquire_and_validate.py ... 11_verify_reply_signal.py   # Phase 2 and 3 pipeline
-├── 20_train_multiclass.py                                     # Phase 4 Safe/Scam/Malware model
-├── webapp/                     # Flask web application (app, inference, features, UI)
-├── tests/                      # unit tests, run in CI
-├── docs/                       # proposal, SDD, phase reports and walkthroughs
-├── design/                     # architecture diagram and design notes
-├── data/                       # small reviewable artifacts and per-step JSON reports
-├── models/                     # fitted models (large files are gitignored)
-├── screenshots/                # figures used in the documentation
-├── .github/workflows/ci.yml    # continuous integration pipeline
-├── Dockerfile                  # container image for deployment
+├── 01_acquire_and_validate.py ... 11_verify_reply_signal.py # Phase 2 and 3 pipeline
+├── 20_train_multiclass.py # Phase 4 Safe/Scam/Malware model
+├── benchmark.py # Week 7 runtime performance benchmark
+├── webapp/ # Flask web application (app, inference, features, UI, api_demo)
+├── tests/ # unit tests, run in CI
+├── docs/ # proposal, SDD, phase reports and walkthroughs
+├── design/ # architecture diagram and design notes
+├── data/ # small reviewable artifacts and per-step JSON reports
+├── models/ # fitted models (large files are gitignored)
+├── screenshots/ # figures used in the documentation
+├── .github/workflows/ci.yml # continuous integration pipeline
+├── Dockerfile # container image for deployment
 ├── requirements.txt
-└── README.md                   # this file
+└── README.md # this file
 ```
 
 The numbered scripts run in order: **01 to 03** build the Phase 2 data pipeline,
@@ -154,7 +176,7 @@ exposing any user data, suitable for a public uptime monitor such as UptimeRobot
 - [x] Phase 3 - Model development ([report](docs/PHASE3_REPORT.md))
 - [x] Phase 4 - Web application ([report](docs/PHASE4_REPORT.md), [app](webapp/))
 - [x] Phase 5 - Testing and evaluation ([report](docs/PHASE5_REPORT.md))
-- [ ] Phase 6 - Documentation and delivery
+- [x] Phase 6 - Documentation and delivery ([Week 7 testing](docs/WEEK7_TESTING.md))
 
 ## Dataset and license
 
